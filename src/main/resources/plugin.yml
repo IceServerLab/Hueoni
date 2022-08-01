@@ -1,0 +1,7 @@
+name: Hueoni
+version: '${version}'
+main: jp.iceserver.hueoni.Hueoni
+api-version: 1.18
+authors: [ Minidon ]
+description: 某実況者がやっていた増え鬼のほぼパクリプラグイン
+website: https://github.com/IceServerLab/Hueoni
