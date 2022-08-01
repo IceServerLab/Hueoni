@@ -5,3 +5,7 @@ api-version: 1.18
 authors: [ Minidon ]
 description: 某実況者がやっていた増え鬼のほぼパクリプラグイン
 website: https://github.com/IceServerLab/Hueoni
+
+commands:
+  start:
+    description: ゲームを開始する
