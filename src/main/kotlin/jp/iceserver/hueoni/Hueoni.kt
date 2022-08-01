@@ -1,6 +1,7 @@
 package jp.iceserver.hueoni
 
 import hazae41.minecraft.kutils.bukkit.init
+import jp.iceserver.hueoni.commands.*
 import jp.iceserver.hueoni.config.MainConfig
 
 class Hueoni : AbstractHueoni()
@@ -16,5 +17,9 @@ class Hueoni : AbstractHueoni()
 
         init(MainConfig)
         MainConfig.autoSave = true
+
+        registerCommands(
+            "start" to StartCommand()
+        )
     }
 }
