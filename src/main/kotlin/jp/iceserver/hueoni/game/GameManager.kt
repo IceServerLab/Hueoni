@@ -40,16 +40,28 @@ class GameManager
 
             override fun run()
             {
+                if (countdown == 0)
+                {
+                    this.cancel()
+
+                    TODO("メッセージ")
+
+                    return
+                }
+
                 Bukkit.getOnlinePlayers().forEach {
                     it.sendActionBar(
                         Component.text(
-                        "${ChatColor.YELLOW}${ChatColor.BOLD}ゲーム時間 ${ChatColor.RESET}${convertTime(countdown).first}:${convertTime(countdown).second}"
+                        "${ChatColor.YELLOW}${ChatColor.BOLD}ゲーム時間 ${ChatColor.RESET}${convertTime(countdown).first}:${if (convertTime(countdown).second < 10) "0${convertTime(countdown).second}" else convertTime(countdown).second}"
                     ))
                 }
                 countdown--
             }
         }.runTaskTimer(Hueoni.plugin, 0L, 20L)
     }
+
+    fun forceFinishGame()
+    {}
 
     fun convertTime(time: Int): Pair<Int, Int> = Pair(floor(time / 60.0).toInt(), time - floor(time / 60.0).toInt() * 60)
 }
