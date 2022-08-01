@@ -1,5 +1,8 @@
 package jp.iceserver.hueoni
 
+import hazae41.minecraft.kutils.bukkit.init
+import jp.iceserver.hueoni.config.MainConfig
+
 class Hueoni : AbstractHueoni()
 {
     companion object
@@ -10,5 +13,8 @@ class Hueoni : AbstractHueoni()
     override fun onEnable()
     {
         plugin = this
+
+        init(MainConfig)
+        MainConfig.autoSave = true
     }
 }

@@ -1,0 +1,16 @@
+#########################################################
+# VaultCraft Configuration File
+# Created by M1n1don
+# - Website: https://www.iceserver.jp/
+# - Discord: https://discord.gg/B4SYTyW
+# - GitHub: https://github.com/IceServerLab/Hueoni
+##
+
+# prefix:
+#   サーバー上のユーザーに対する本プラグインのメッセージに使用されるプレフィックス
+#   DEFAULT: ""
+prefix: " "
+
+# defaultGameTime:
+#   未設定じのゲーム時間（秒）
+defaultGameTime: 600
