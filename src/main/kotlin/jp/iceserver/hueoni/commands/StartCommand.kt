@@ -58,6 +58,10 @@ class StartCommand : CommandExecutor
                 Bukkit.getOnlinePlayers().forEach {
                     it.sendTitlePart(TitlePart.TITLE, Component.text("${ChatColor.YELLOW}$count").asComponent())
                     it.playSound(it.location, Sound.UI_BUTTON_CLICK, 40f, 1f)
+
+                    if ((Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(it.name) ?: return@forEach).name != "ONI") return@forEach
+
+                    Hueoni.plugin.teamManager!!.mountOniArmor(it)
                 }
 
                 count--
