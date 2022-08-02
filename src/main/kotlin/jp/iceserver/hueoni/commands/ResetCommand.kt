@@ -12,6 +12,7 @@ import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
+import org.bukkit.potion.PotionEffectType
 
 class ResetCommand : CommandExecutor
 {
@@ -36,6 +37,7 @@ class ResetCommand : CommandExecutor
 
             it.inventory.clear()
             it.health = 20.0
+            it.removePotionEffect(PotionEffectType.SPEED)
         }
 
         GameManager.getInstance().countdown = MainConfig.defaultGameTime
