@@ -42,11 +42,10 @@ class EntityDamage : Listener
             Hueoni.plugin.teamManager!!.mountOniArmor(player)
             Bukkit.getScoreboardManager().mainScoreboard.getTeam("ONI")!!.addEntry(player.name)
             Bukkit.broadcast(Component.text("${MainConfig.prefix} ${ChatColor.RED}${player.name} ${ChatColor.YELLOW}は ${ChatColor.RED}${damager.name} ${ChatColor.YELLOW}に捕まった。").asComponent())
-
         }
 
         if (Bukkit.getScoreboardManager().mainScoreboard.getTeam("NIGE")!!.size != 0) return
 
-        GameManager.getInstance().gameTime = 0
+        GameManager.getInstance().countdown = 0
     }
 }
