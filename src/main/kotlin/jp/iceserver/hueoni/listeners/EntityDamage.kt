@@ -5,6 +5,7 @@ import jp.iceserver.hueoni.config.MainConfig
 import jp.iceserver.hueoni.game.GameManager
 import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
+import org.bukkit.Sound
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -35,6 +36,7 @@ class EntityDamage : Listener
                 && Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(damager.name)!!.name == "NIGE")
         {
             damager.health = 20.0
+            damager.playSound(damager.location, Sound.ITEM_ARMOR_EQUIP_DIAMOND, 70f, 1f)
             Hueoni.plugin.teamManager!!.mountOniArmor(damager)
             Bukkit.getScoreboardManager().mainScoreboard.getTeam("ONI")!!.addEntry(damager.name)
             Bukkit.broadcast(Component.text("${MainConfig.prefix} &c${damager.name} &eは &c${player.name} &eに捕まった。").asComponent())
