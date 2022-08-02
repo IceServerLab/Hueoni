@@ -38,6 +38,7 @@ class ResetCommand : CommandExecutor
             it.inventory.clear()
             it.health = 20.0
             it.removePotionEffect(PotionEffectType.SPEED)
+            it.teleport(it.world.spawnLocation)
         }
 
         GameManager.getInstance().countdown = MainConfig.defaultGameTime
