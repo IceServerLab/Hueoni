@@ -59,7 +59,7 @@ class GameManager
                 Bukkit.getOnlinePlayers().forEach {
                     it.sendActionBar(
                         generateInfoBar(
-                            "${ChatColor.RED}${ChatColor.BOLD}鬼 ${ChatColor.RESET}${Bukkit.getScoreboardManager().mainScoreboard.getTeam("ONI")!!.size}人",
+                            "${ChatColor.RED}${ChatColor.BOLD}鬼 ${ChatColor.RESET}${Bukkit.getScoreboardManager().mainScoreboard.getTeam("ONI")!!.size}",
                             "${ChatColor.YELLOW}${ChatColor.BOLD}ゲーム時間 ${ChatColor.RESET}${convertTime(countdown).first}:${if (convertTime(countdown).second < 10) "0${convertTime(countdown).second}" else convertTime(countdown).second}"
                         )
                     )
