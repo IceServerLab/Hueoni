@@ -38,6 +38,7 @@ class ResetCommand : CommandExecutor
             Pair("ONI", ChatColor.RED),
             Pair("ADMIN", ChatColor.GOLD)
         )
+        GameManager.getInstance().runnable = null
 
         sender.playSound(sender.location, Sound.BLOCK_NOTE_BLOCK_PLING, 30f, 1f)
         sender.msg("${MainConfig.prefix} &eゲームをリセットしました。")
