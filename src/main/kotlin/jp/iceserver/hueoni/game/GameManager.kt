@@ -24,7 +24,7 @@ class GameManager
         }
     }
 
-    var gameTime: Int = MainConfig.defaultGameTime
+    var countdown: Int = MainConfig.defaultGameTime
     var runnable: BukkitRunnable? = null
 
     fun startGame(world: World)
@@ -51,8 +51,6 @@ class GameManager
 
         runnable = object: BukkitRunnable()
         {
-            var countdown: Int = gameTime
-
             override fun run()
             {
                 if (countdown == 0)
@@ -68,8 +66,6 @@ class GameManager
                         it.sendTitlePart(TitlePart.SUBTITLE, Component.text("${ChatColor.GRAY}増え鬼").asComponent())
                         it.playSound(it.location, Sound.ENTITY_GENERIC_EXPLODE, 40f, 1f)
                     }
-
-                    runnable = null
                 }
 
                 Bukkit.getOnlinePlayers().forEach {
@@ -93,12 +89,10 @@ class GameManager
         runnable?.cancel()
 
         Bukkit.getOnlinePlayers().forEach {
-            it.sendTitlePart(TitlePart.TITLE, Component.text("${ChatColor.WHITE}${ChatColor.BOLD}ゲームを強制終了しました").asComponent())
+            it.sendTitlePart(TitlePart.TITLE, Component.text("${ChatColor.YELLOW}${ChatColor.BOLD}ゲームを強制終了しました").asComponent())
             it.sendTitlePart(TitlePart.SUBTITLE, Component.text("${ChatColor.GRAY}増え鬼").asComponent())
             it.playSound(it.location, Sound.ENTITY_GENERIC_EXPLODE, 40f, 1f)
         }
-
-        runnable = null
     }
 
     fun convertTime(time: Int): Pair<Int, Int> = Pair(floor(time / 60.0).toInt(), time - floor(time / 60.0).toInt() * 60)

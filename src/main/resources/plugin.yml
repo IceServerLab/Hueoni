@@ -11,3 +11,5 @@ commands:
     description: ゲームを開始する
   finish:
     description: ゲームを強制終了する
+  reset:
+    description: ゲームをリセットする

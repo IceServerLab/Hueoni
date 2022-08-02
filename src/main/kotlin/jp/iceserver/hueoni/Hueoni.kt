@@ -36,7 +36,8 @@ class Hueoni : AbstractHueoni()
 
         registerCommands(
             "start" to StartCommand(),
-            "finish" to FinishCommand()
+            "finish" to FinishCommand(),
+            "reset" to ResetCommand()
         )
     }
 

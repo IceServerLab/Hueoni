@@ -37,6 +37,12 @@ class StartCommand : CommandExecutor
 
         if (GameManager.getInstance().runnable != null)
         {
+            if (GameManager.getInstance().countdown == 0)
+            {
+                sender.msg("${MainConfig.prefix} &cゲームをリセットしてください。")
+                return true
+            }
+
             sender.msg("${MainConfig.prefix} &cゲームは既に始まっています。")
             return true
         }
