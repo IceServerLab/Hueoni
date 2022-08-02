@@ -34,7 +34,11 @@ class GameManager
             it.sendTitlePart(TitlePart.SUBTITLE, Component.text("${ChatColor.GRAY}増え鬼").asComponent())
             it.playSound(it.location, Sound.ENTITY_GENERIC_EXPLODE, 40f, 1f)
 
-            if (listOf(GameMode.CREATIVE, GameMode.SPECTATOR).contains(it.gameMode)) return@forEach
+            if (listOf(GameMode.CREATIVE, GameMode.SPECTATOR).contains(it.gameMode))
+            {
+                Bukkit.getScoreboardManager().mainScoreboard.getTeam("ADMIN")!!.addEntry(it.name)
+                return@forEach
+            }
 
             it.gameMode = GameMode.SURVIVAL
             it.health = 20.0
