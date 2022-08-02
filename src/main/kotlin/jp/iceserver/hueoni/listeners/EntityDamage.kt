@@ -13,6 +13,8 @@ import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntityDamageByEntityEvent
 import org.bukkit.event.entity.EntityDamageEvent
+import org.bukkit.potion.PotionEffect
+import org.bukkit.potion.PotionEffectType
 
 class EntityDamage : Listener
 {
@@ -37,6 +39,8 @@ class EntityDamage : Listener
         if (Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(damager.name)!!.name == "ONI"
                 && Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(player.name)!!.name == "NIGE")
         {
+            @Suppress("DEPRECATION")
+            player.addPotionEffect(PotionEffect(PotionEffectType.SPEED, 200000, 0), true)
             player.health = 20.0
             player.playSound(player.location, Sound.ITEM_ARMOR_EQUIP_DIAMOND, 70f, 1f)
             Hueoni.plugin.teamManager!!.mountOniArmor(player)

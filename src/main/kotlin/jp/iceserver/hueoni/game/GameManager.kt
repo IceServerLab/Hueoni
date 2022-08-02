@@ -1,11 +1,14 @@
 package jp.iceserver.hueoni.game
 
+import hazae41.minecraft.kutils.bukkit.msg
 import jp.iceserver.hueoni.Hueoni
 import jp.iceserver.hueoni.config.MainConfig
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.TextComponent
 import net.kyori.adventure.title.TitlePart
 import org.bukkit.*
+import org.bukkit.potion.PotionEffect
+import org.bukkit.potion.PotionEffectType
 import org.bukkit.scheduler.BukkitRunnable
 import java.lang.StrictMath.floor
 
@@ -36,6 +39,7 @@ class GameManager
 
             if (listOf(GameMode.CREATIVE, GameMode.SPECTATOR).contains(it.gameMode))
             {
+                it.msg("${MainConfig.prefix} &6あなたはAdminモードになっています。")
                 Bukkit.getScoreboardManager().mainScoreboard.getTeam("ADMIN")!!.addEntry(it.name)
                 return@forEach
             }
@@ -43,8 +47,12 @@ class GameManager
             it.gameMode = GameMode.ADVENTURE
             it.health = 20.0
 
-            if (Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(it.name) != null) return@forEach
-            Bukkit.getScoreboardManager().mainScoreboard.getTeam("NIGE")!!.addEntry(it.name)
+            if (Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(it.name) == null)
+                Bukkit.getScoreboardManager().mainScoreboard.getTeam("NIGE")!!.addEntry(it.name)
+
+            if (Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(it.name)!!.name != "ONI") return@forEach
+            @Suppress("DEPRECATION")
+            it.addPotionEffect(PotionEffect(PotionEffectType.SPEED, 200000, 0), true)
         }
         world.difficulty = Difficulty.PEACEFUL
         world.setGameRule(GameRule.FALL_DAMAGE, false)
