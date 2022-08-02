@@ -6,14 +6,18 @@ import jp.iceserver.hueoni.config.MainConfig
 import jp.iceserver.hueoni.game.GameManager
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
+import org.bukkit.Sound
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
+import org.bukkit.entity.Player
 
 class ResetCommand : CommandExecutor
 {
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<out String>): Boolean
     {
+        sender as Player
+
         if (!sender.isOp)
         {
             sender.msg("${MainConfig.prefix} &cあなたは実行する権限が有りません。")
@@ -35,6 +39,7 @@ class ResetCommand : CommandExecutor
             Pair("ADMIN", ChatColor.GOLD)
         )
 
+        sender.playSound(sender.location, Sound.BLOCK_NOTE_BLOCK_PLING, 30f, 1f)
         sender.msg("${MainConfig.prefix} &eゲームをリセットしました。")
         return true
     }
