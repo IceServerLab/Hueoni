@@ -4,6 +4,7 @@ import hazae41.minecraft.kutils.bukkit.msg
 import jp.iceserver.hueoni.Hueoni
 import jp.iceserver.hueoni.config.MainConfig
 import jp.iceserver.hueoni.game.GameManager
+import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Sound
@@ -47,7 +48,7 @@ class ResetCommand : CommandExecutor
         GameManager.getInstance().runnable = null
 
         sender.playSound(sender.location, Sound.BLOCK_NOTE_BLOCK_PLING, 30f, 1f)
-        sender.msg("${MainConfig.prefix} &eゲームをリセットしました。")
+        Bukkit.broadcast(Component.text("${MainConfig.prefix} ${ChatColor.YELLOW}ゲームをリセットしました。"))
         return true
     }
 }
