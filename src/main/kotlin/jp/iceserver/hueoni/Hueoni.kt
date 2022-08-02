@@ -31,7 +31,7 @@ class Hueoni : AbstractHueoni()
         )
 
         registerListeners(
-            EntityDamage(), InventoryClick()
+            EntityDamage(), InventoryClick(), PlayerConnection()
         )
 
         registerCommands(
