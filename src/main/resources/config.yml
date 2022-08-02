@@ -12,5 +12,9 @@
 prefix: " "
 
 # defaultGameTime:
-#   未設定じのゲーム時間（秒）
+#   未設定時のゲーム時間（秒）
 defaultGameTime: 600
+
+# defaultCount:
+#   ゲーム開始前のカウント（秒）
+defaultCount: 3

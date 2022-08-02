@@ -6,4 +6,5 @@ object MainConfig : PluginConfigFile("config")
 {
     var prefix by string("prefix")
     var defaultGameTime by int("defaultGameTime")
+    var defaultCount by int("defaultCount")
 }
