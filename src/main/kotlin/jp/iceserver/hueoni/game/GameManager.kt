@@ -40,7 +40,7 @@ class GameManager
                 return@forEach
             }
 
-            it.gameMode = GameMode.SURVIVAL
+            it.gameMode = GameMode.ADVENTURE
             it.health = 20.0
 
             if (Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(it.name) != null) return@forEach
