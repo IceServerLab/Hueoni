@@ -9,6 +9,7 @@ class TeamManager
 {
     private val board: Scoreboard = Bukkit.getScoreboardManager().mainScoreboard
 
+    @Suppress("DEPRECATION")
     fun createTeam(vararg pair: Pair<String, ChatColor>): Team
     {
         var team: Team? = null
