@@ -2,6 +2,9 @@ package jp.iceserver.hueoni.team
 
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
+import org.bukkit.Material
+import org.bukkit.entity.Player
+import org.bukkit.inventory.ItemStack
 import org.bukkit.scoreboard.Scoreboard
 import org.bukkit.scoreboard.Team
 
@@ -24,6 +27,15 @@ class TeamManager
         }
 
         return team!!
+    }
+
+    fun mountOniArmor(target: Player)
+    {
+        target.inventory.helmet = ItemStack(Material.DIAMOND_HELMET)
+        target.inventory.chestplate = ItemStack(Material.DIAMOND_CHESTPLATE)
+        target.inventory.leggings = ItemStack(Material.DIAMOND_LEGGINGS)
+        target.inventory.boots = ItemStack(Material.DIAMOND_BOOTS)
+        target.updateInventory()
     }
 
     fun resetTeams() = board.teams.forEach { it.unregister() }
