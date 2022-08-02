@@ -38,8 +38,12 @@ class GameManager
 
             it.gameMode = GameMode.SURVIVAL
             it.health = 20.0
+
+            if (Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(it.name) != null) return@forEach
+            Bukkit.getScoreboardManager().mainScoreboard.getTeam("NIGE")!!.addEntry(it.name)
         }
         world.difficulty = Difficulty.NORMAL
+        world.setGameRule(GameRule.FALL_DAMAGE, false)
 
         runnable = object: BukkitRunnable()
         {
@@ -50,8 +54,6 @@ class GameManager
                 if (countdown == 0)
                 {
                     this.cancel()
-
-                    TODO("メッセージ")
 
                     runnable = null
                 }
