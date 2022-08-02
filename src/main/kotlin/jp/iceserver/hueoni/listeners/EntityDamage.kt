@@ -39,10 +39,9 @@ class EntityDamage : Listener
         if (Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(damager.name)!!.name == "ONI"
                 && Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(player.name)!!.name == "NIGE")
         {
-            @Suppress("DEPRECATION")
-            player.addPotionEffect(PotionEffect(PotionEffectType.SPEED, 200000, 0), true)
             player.health = 20.0
             player.playSound(player.location, Sound.ITEM_ARMOR_EQUIP_DIAMOND, 70f, 1f)
+            player.addPotionEffect(PotionEffect(PotionEffectType.SPEED, 200000, 0, false, false, false))
             Hueoni.plugin.teamManager!!.mountOniArmor(player)
             Bukkit.getScoreboardManager().mainScoreboard.getTeam("ONI")!!.addEntry(player.name)
             Bukkit.broadcast(Component.text("${MainConfig.prefix} ${ChatColor.RED}${player.name} ${ChatColor.YELLOW}は ${ChatColor.RED}${damager.name} ${ChatColor.YELLOW}に捕まった。").asComponent())

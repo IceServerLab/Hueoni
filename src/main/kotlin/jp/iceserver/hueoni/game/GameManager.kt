@@ -51,8 +51,7 @@ class GameManager
                 Bukkit.getScoreboardManager().mainScoreboard.getTeam("NIGE")!!.addEntry(it.name)
 
             if (Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(it.name)!!.name != "ONI") return@forEach
-            @Suppress("DEPRECATION")
-            it.addPotionEffect(PotionEffect(PotionEffectType.SPEED, 200000, 0), true)
+            it.addPotionEffect(PotionEffect(PotionEffectType.SPEED, 200000, 0, false, false, false))
         }
         world.difficulty = Difficulty.PEACEFUL
         world.setGameRule(GameRule.FALL_DAMAGE, false)
