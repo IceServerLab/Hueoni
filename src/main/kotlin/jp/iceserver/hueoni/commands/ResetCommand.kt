@@ -24,6 +24,12 @@ class ResetCommand : CommandExecutor
             return true
         }
 
+        if (GameManager.getInstance().runnable != null && GameManager.getInstance().countdown != 0)
+        {
+            sender.msg("${MainConfig.prefix} &cゲーム中のためリセットできません。")
+            return true
+        }
+
         Bukkit.getOnlinePlayers().forEach {
             if (Bukkit.getScoreboardManager().mainScoreboard.getTeam("ADMIN")!!.hasEntry(it.name)) return@forEach
 
