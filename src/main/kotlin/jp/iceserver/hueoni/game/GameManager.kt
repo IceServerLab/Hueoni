@@ -42,7 +42,7 @@ class GameManager
             if (Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(it.name) != null) return@forEach
             Bukkit.getScoreboardManager().mainScoreboard.getTeam("NIGE")!!.addEntry(it.name)
         }
-        world.difficulty = Difficulty.NORMAL
+        world.difficulty = Difficulty.PEACEFUL
         world.setGameRule(GameRule.FALL_DAMAGE, false)
 
         runnable = object: BukkitRunnable()
@@ -54,6 +54,12 @@ class GameManager
                 if (countdown == 0)
                 {
                     this.cancel()
+
+                    Bukkit.getOnlinePlayers().forEach {
+                        it.sendTitlePart(TitlePart.TITLE, Component.text("${ChatColor.DARK_GREEN}${ChatColor.BOLD}ゲーム終了！！").asComponent())
+                        it.sendTitlePart(TitlePart.SUBTITLE, Component.text("${ChatColor.GRAY}増え鬼").asComponent())
+                        it.playSound(it.location, Sound.ENTITY_GENERIC_EXPLODE, 40f, 1f)
+                    }
 
                     runnable = null
                 }
@@ -90,7 +96,7 @@ class GameManager
             builder.append("${ChatColor.GRAY} | ")
         }
 
-        builder.setLength(builder.length - 4)
+        builder.setLength(builder.length - 5)
         return Component.text(builder.toString())
     }
 }
