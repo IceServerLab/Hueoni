@@ -53,6 +53,17 @@ class GameManager
         {
             override fun run()
             {
+                Bukkit.getOnlinePlayers().forEach {
+                    it.sendActionBar(
+                        generateInfoBar(
+                            "${ChatColor.RED}${ChatColor.BOLD}鬼 ${ChatColor.RESET}${Bukkit.getScoreboardManager().mainScoreboard.getTeam("ONI")!!.size}",
+                            "${ChatColor.YELLOW}${ChatColor.BOLD}ゲーム時間 ${ChatColor.RESET}${convertTime(countdown).first}:${if (convertTime(countdown).second < 10) "0${convertTime(countdown).second}" else convertTime(countdown).second}"
+                        )
+                    )
+                }
+
+                countdown--
+
                 if (countdown == 0)
                 {
                     this.cancel()
@@ -67,16 +78,6 @@ class GameManager
                         it.playSound(it.location, Sound.ENTITY_GENERIC_EXPLODE, 40f, 1f)
                     }
                 }
-
-                Bukkit.getOnlinePlayers().forEach {
-                    it.sendActionBar(
-                        generateInfoBar(
-                            "${ChatColor.RED}${ChatColor.BOLD}鬼 ${ChatColor.RESET}${Bukkit.getScoreboardManager().mainScoreboard.getTeam("ONI")!!.size}",
-                            "${ChatColor.YELLOW}${ChatColor.BOLD}ゲーム時間 ${ChatColor.RESET}${convertTime(countdown).first}:${if (convertTime(countdown).second < 10) "0${convertTime(countdown).second}" else convertTime(countdown).second}"
-                        )
-                    )
-                }
-                countdown--
             }
         }
         runnable?.runTaskTimer(Hueoni.plugin, 0L, 20L)
