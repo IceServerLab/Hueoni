@@ -56,7 +56,11 @@ class GameManager
                     this.cancel()
 
                     Bukkit.getOnlinePlayers().forEach {
-                        it.sendTitlePart(TitlePart.TITLE, Component.text("${ChatColor.DARK_GREEN}${ChatColor.BOLD}ゲーム終了！！").asComponent())
+                        it.sendTitlePart(TitlePart.TITLE, Component.text(
+                            if (Bukkit.getScoreboardManager().mainScoreboard.getTeam("NIGE")!!.size == 0)
+                                "${ChatColor.RED}${ChatColor.BOLD}鬼側の勝利！！"
+                            else "${ChatColor.GREEN}${ChatColor.BOLD}逃げ側の勝利！！"
+                        ).asComponent())
                         it.sendTitlePart(TitlePart.SUBTITLE, Component.text("${ChatColor.GRAY}増え鬼").asComponent())
                         it.playSound(it.location, Sound.ENTITY_GENERIC_EXPLODE, 40f, 1f)
                     }
@@ -83,6 +87,14 @@ class GameManager
         if (runnable == null) return
 
         runnable?.cancel()
+
+        Bukkit.getOnlinePlayers().forEach {
+            it.sendTitlePart(TitlePart.TITLE, Component.text("${ChatColor.WHITE}${ChatColor.BOLD}ゲームを強制終了しました").asComponent())
+            it.sendTitlePart(TitlePart.SUBTITLE, Component.text("${ChatColor.GRAY}増え鬼").asComponent())
+            it.playSound(it.location, Sound.ENTITY_GENERIC_EXPLODE, 40f, 1f)
+        }
+
+        runnable = null
     }
 
     fun convertTime(time: Int): Pair<Int, Int> = Pair(floor(time / 60.0).toInt(), time - floor(time / 60.0).toInt() * 60)

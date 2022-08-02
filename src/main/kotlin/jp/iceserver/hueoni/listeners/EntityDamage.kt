@@ -4,6 +4,7 @@ import jp.iceserver.hueoni.Hueoni
 import jp.iceserver.hueoni.config.MainConfig
 import jp.iceserver.hueoni.game.GameManager
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.title.TitlePart
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Sound
@@ -43,5 +44,9 @@ class EntityDamage : Listener
             Bukkit.broadcast(Component.text("${MainConfig.prefix} ${ChatColor.RED}${player.name} ${ChatColor.YELLOW}は ${ChatColor.RED}${damager.name} ${ChatColor.YELLOW}に捕まった。").asComponent())
 
         }
+
+        if (Bukkit.getScoreboardManager().mainScoreboard.getTeam("NIGE")!!.size != 0) return
+
+        GameManager.getInstance().gameTime = 0
     }
 }
