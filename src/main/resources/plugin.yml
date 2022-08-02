@@ -9,3 +9,5 @@ website: https://github.com/IceServerLab/Hueoni
 commands:
   start:
     description: ゲームを開始する
+  finish:
+    description: ゲームを強制終了する
