@@ -5,6 +5,7 @@ import jp.iceserver.hueoni.config.MainConfig
 import jp.iceserver.hueoni.game.GameManager
 import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
+import org.bukkit.ChatColor
 import org.bukkit.Sound
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -32,14 +33,15 @@ class EntityDamage : Listener
         val player: Player = e.entity as Player
         val damager: Player = e.damager as Player
 
-        if (Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(player.name)!!.name == "ONI"
-                && Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(damager.name)!!.name == "NIGE")
+        if (Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(damager.name)!!.name == "ONI"
+                && Bukkit.getScoreboardManager().mainScoreboard.getEntryTeam(player.name)!!.name == "NIGE")
         {
-            damager.health = 20.0
-            damager.playSound(damager.location, Sound.ITEM_ARMOR_EQUIP_DIAMOND, 70f, 1f)
-            Hueoni.plugin.teamManager!!.mountOniArmor(damager)
-            Bukkit.getScoreboardManager().mainScoreboard.getTeam("ONI")!!.addEntry(damager.name)
-            Bukkit.broadcast(Component.text("${MainConfig.prefix} &c${damager.name} &eは &c${player.name} &eに捕まった。").asComponent())
+            player.health = 20.0
+            player.playSound(player.location, Sound.ITEM_ARMOR_EQUIP_DIAMOND, 70f, 1f)
+            Hueoni.plugin.teamManager!!.mountOniArmor(player)
+            Bukkit.getScoreboardManager().mainScoreboard.getTeam("ONI")!!.addEntry(player.name)
+            Bukkit.broadcast(Component.text("${MainConfig.prefix} ${ChatColor.RED}${player.name} ${ChatColor.YELLOW}は ${ChatColor.RED}${damager.name} ${ChatColor.YELLOW}に捕まった。").asComponent())
+
         }
     }
 }
