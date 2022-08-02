@@ -87,6 +87,7 @@ class GameManager
         if (runnable == null) return
 
         runnable?.cancel()
+        countdown = 0
 
         Bukkit.getOnlinePlayers().forEach {
             it.sendTitlePart(TitlePart.TITLE, Component.text("${ChatColor.YELLOW}${ChatColor.BOLD}ゲームを強制終了しました").asComponent())
